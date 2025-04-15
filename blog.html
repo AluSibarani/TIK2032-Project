@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <title>Blog - My Simple Website</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog.css">
 </head>
 <body>
     <header>
@@ -13,31 +13,65 @@
             <a href="blog.html">Blog</a>
             <a href="contact.html">Contact</a>
         </nav>
+        <!-- Jam & Tombol Dark Mode -->
+        <div class="header-right">
+            <div id="clock" title="Jam Digital"></div>
+            <button id="toggleDarkMode" title="Toggle Dark Mode">🌓</button>
+        </div>
     </header>
+
     <main>
         <article>
-            <h2>Artikel 1:LIONEL MESSI </h2>
-            <p>Lionel Messi lahir pada 24 Juni 1987 di Rosario, Argentina. Sejak kecil, bakatnya dalam sepak  bola 
-                sudah terlihat. Pada usia 13 tahun, ia pindah ke Spanyol untuk bergabung dengan akademi La Masia milik FC Barcelona Messi melakukan debut untuk tim utama
-                 Barcelona pada tahun 2004. Sejak itu, ia menjadi pemain kunci,
-                 memenangkan berbagai gelar termasuk 10 La Liga dan 4 Liga Champions. Ia juga meraih 8 Ballon d'Or (penghargaan pemain terbaik dunia).</p>
+            <h2>Artikel 1: LIONEL MESSI</h2>
+            <p>Lionel Messi lahir pada 24 Juni 1987 di Rosario, Argentina. Sejak kecil, bakatnya dalam sepak bola sudah terlihat. Pada usia 13 tahun, ia pindah ke Spanyol untuk bergabung dengan akademi La Masia milik FC Barcelona. Messi melakukan debut untuk tim utama Barcelona pada tahun 2004. Sejak itu, ia menjadi pemain kunci, memenangkan berbagai gelar termasuk 10 La Liga dan 4 Liga Champions. Ia juga meraih 8 Ballon d'Or (penghargaan pemain terbaik dunia).</p>
         </article>
         <article>
             <h2>Artikel 2: CRISTIANO RONALDO</h2>
-            <p>Cristiano Ronaldo lahir pada 5 Februari 1985 di Madeira, Portugal. 
-                Ia memulai karier profesionalnya di Sporting CP sebelum direkrut Manchester United pada 2003. Di bawah asuhan Sir Alex Ferguson, 
-                ia berkembang pesat dan memenangkan tiga gelar Liga Inggris serta satu Liga Champions.</p>
+            <p>Cristiano Ronaldo lahir pada 5 Februari 1985 di Madeira, Portugal. Ia memulai karier profesionalnya di Sporting CP sebelum direkrut Manchester United pada 2003. Di bawah asuhan Sir Alex Ferguson, ia berkembang pesat dan memenangkan tiga gelar Liga Inggris serta satu Liga Champions.</p>
         </article>
         <article>
             <h2>Artikel 3: Neymar da Silva Santos Júnior</h2>
-            <p>Neymar da Silva Santos Júnior lahir pada 5 Februari 1992 di Mogi das Cruzes, Brasil. 
-                Ia mulai menonjol di klub Santos, tempat ia memenangkan Copa Libertadores 2011.Pada 2013, 
-                Neymar pindah ke Barcelona, membentuk trio "MSN" bersama Messi dan Suárez. Ia memenangkan banyak gelar, 
-                termasuk treble (La Liga, Copa del Rey, dan Liga Champions) pada 2015.</p>
+            <p>Neymar da Silva Santos Júnior lahir pada 5 Februari 1992 di Mogi das Cruzes, Brasil. Ia mulai menonjol di klub Santos, tempat ia memenangkan Copa Libertadores 2011. Pada 2013, Neymar pindah ke Barcelona, membentuk trio "MSN" bersama Messi dan Suárez. Ia memenangkan banyak gelar, termasuk treble (La Liga, Copa del Rey, dan Liga Champions) pada 2015.</p>
         </article>
     </main>
+
     <footer>
         <p>&copy; ALU SHIAU SIBARANI</p>
     </footer>
+
+    <!-- Script untuk toggle dark mode & jam -->
+    <script>
+        const toggleButton = document.getElementById('toggleDarkMode');
+        const body = document.body;
+
+        // Dark mode
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            toggleButton.textContent = '🌓';
+        }
+
+        toggleButton.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                toggleButton.textContent = '🌓';
+                localStorage.setItem('darkMode', 'disabled');
+            } else {
+                body.classList.add('dark-mode');
+                toggleButton.textContent = '🌓';
+                localStorage.setItem('darkMode', 'enabled');
+            }
+        });
+
+        // Jam Digital
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
 </body>
 </html>
